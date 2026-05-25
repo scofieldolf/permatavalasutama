@@ -1,0 +1,1302 @@
+<!DOCTYPE html>
+<html lang="id" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Permata Valas Utama | Safe, Fast, & Reliable Currency Exchange</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* ==========================================================================
+           1. CSS VARIABLES & THEME SETUP
+           ========================================================================= */
+        :root {
+            /* Light Mode Palette */
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8fafc;
+            --bg-tertiary: #f1f5f9;
+            --text-primary: #0f172a;
+            --text-secondary: #475569;
+            --text-muted: #94a3b8;
+            --accent-primary: #0f172a; 
+            --accent-success: #10b981; /* Emerald Green */
+            --accent-success-hover: #059669;
+            --border-color: #e2e8f0;
+            --card-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.05), 0 2px 4px -2px rgb(0 0 0 / 0.05);
+            
+            /* Layout Tokens */
+            --max-width: 1200px;
+            --radius-sm: 6px;
+            --radius-md: 12px;
+            --radius-lg: 20px;
+            --transition: all 0.3s ease;
+        }
+
+        [data-theme="dark"] {
+            /* Dark Mode Palette */
+            --bg-primary: #0b0f19;
+            --bg-secondary: #111827;
+            --bg-tertiary: #1f2937;
+            --text-primary: #f9fafb;
+            --text-secondary: #9ca3af;
+            --text-muted: #6b7280;
+            --accent-primary: #3b82f6;
+            --border-color: #374151;
+            --card-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.3);
+        }
+
+        /* ==========================================================================
+           2. BASE STYLES
+           ========================================================================= */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        body {
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: var(--transition);
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        .container {
+            width: 100%;
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        section {
+            padding: 80px 0;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 48px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .section-header h2 {
+            font-size: 2.25rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+            letter-spacing: -0.02em;
+        }
+
+        .section-header p {
+            color: var(--text-secondary);
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 12px 24px;
+            font-weight: 600;
+            border-radius: var(--radius-sm);
+            cursor: pointer;
+            transition: var(--transition);
+            border: none;
+            font-size: 0.95rem;
+        }
+
+        .btn-primary {
+            background-color: var(--accent-success);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--accent-success-hover);
+        }
+
+        .btn-secondary {
+            background-color: var(--bg-tertiary);
+            color: var(--text-primary);
+            border: 1px solid var(--border-color);
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--border-color);
+        }
+
+        .badge {
+            background-color: rgba(16, 185, 129, 0.1);
+            color: var(--accent-success);
+            padding: 4px 12px;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            display: inline-block;
+            margin-bottom: 12px;
+        }
+
+        /* ==========================================================================
+           3. HEADER & NAVIGATION
+           ========================================================================= */
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background-color: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border-color);
+            transition: var(--transition);
+        }
+
+        [data-theme="dark"] header {
+            background-color: rgba(11, 15, 25, 0.8);
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 72px;
+        }
+
+        .logo {
+            font-size: 1.35rem;
+            font-weight: 700;
+            letter-spacing: -0.03em;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: var(--text-primary);
+        }
+
+        .logo img {
+            height: 40px;
+            width: auto;
+            object-fit: contain;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: var(--text-secondary);
+        }
+
+        .nav-links a:hover {
+            color: var(--text-primary);
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .lang-btn {
+            background: none;
+            border: 1px solid var(--border-color);
+            padding: 6px 12px;
+            border-radius: var(--radius-sm);
+            cursor: pointer;
+            font-family: inherit;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            transition: var(--transition);
+        }
+
+        .lang-btn:hover {
+            background-color: var(--bg-tertiary);
+        }
+
+        .theme-toggle {
+            background: none;
+            border: none;
+            color: var(--text-primary);
+            cursor: pointer;
+            font-size: 1.2rem;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+        }
+
+        .theme-toggle:hover {
+            background-color: var(--bg-tertiary);
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 6px;
+            cursor: pointer;
+            background: none;
+            border: none;
+        }
+
+        .hamburger span {
+            width: 24px;
+            height: 2px;
+            background-color: var(--text-primary);
+            transition: var(--transition);
+        }
+
+        /* ==========================================================================
+           4. HERO SECTION
+           ========================================================================= */
+        .hero {
+            padding: 100px 0 60px 0;
+            background: linear-gradient(180deg, var(--bg-secondary) 0%, var(--bg-primary) 100%);
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 48px;
+            align-items: center;
+        }
+
+        .hero-content h1 {
+            font-size: 3.2rem;
+            line-height: 1.15;
+            font-weight: 700;
+            letter-spacing: -0.03em;
+            margin-bottom: 24px;
+        }
+
+        .hero-content p {
+            font-size: 1.125rem;
+            color: var(--text-secondary);
+            margin-bottom: 36px;
+            max-width: 500px;
+        }
+
+        .hero-ctas {
+            display: flex;
+            gap: 16px;
+        }
+
+        .hero-features {
+            display: flex;
+            gap: 24px;
+            margin-top: 48px;
+            padding-top: 32px;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .hf-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--text-secondary);
+        }
+
+        .hf-item i {
+            color: var(--accent-success);
+        }
+
+        /* ==========================================================================
+           5. KURS TABLE & INQUIRY SECTION (DASHBOARD LAYOUT)
+           ========================================================================= */
+        .dashboard-section {
+            background-color: var(--bg-primary);
+        }
+
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 32px;
+            align-items: start;
+        }
+
+        .board-card {
+            background-color: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            padding: 32px;
+            box-shadow: var(--card-shadow);
+        }
+
+        .board-card h3 {
+            font-size: 1.25rem;
+            margin-bottom: 4px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .update-time {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-bottom: 20px;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .table-responsive {
+            overflow-x: auto;
+        }
+
+        .rates-table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+        }
+
+        .rates-table th, .rates-table td {
+            padding: 14px 16px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .rates-table th {
+            font-weight: 600;
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .currency-td {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 600;
+        }
+
+        .currency-flag {
+            width: 28px;
+            height: 20px;
+            object-fit: cover;
+            border-radius: 2px;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+        }
+
+        .currency-name {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            font-weight: 400;
+        }
+
+        .rate-val {
+            font-family: monospace;
+            font-size: 1rem;
+            font-weight: 600;
+        }
+
+        /* NEW PROMINENT DISCLAIMER STYLE */
+        .table-disclaimer {
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: #b45309; /* Dark Amber */
+            background-color: #fef3c7; /* Light Amber */
+            border: 1px solid #fde68a;
+            padding: 14px 18px;
+            border-radius: var(--radius-sm);
+            margin-top: 20px;
+            line-height: 1.5;
+            display: flex;
+            gap: 12px;
+            align-items: flex-start;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.02);
+            transition: var(--transition);
+        }
+
+        [data-theme="dark"] .table-disclaimer {
+            background-color: rgba(217, 119, 6, 0.15);
+            border-color: rgba(217, 119, 6, 0.3);
+            color: #fbb6ce;
+            color: #f59e0b;
+        }
+
+        .table-disclaimer i {
+            font-size: 1.1rem;
+            color: #d97706;
+            margin-top: 2px;
+        }
+
+        [data-theme="dark"] .table-disclaimer i {
+            color: #f59e0b;
+        }
+
+        /* Form UI */
+        .form-subtitle {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-bottom: 28px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.875rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--text-secondary);
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        .form-input, .form-select {
+            width: 100%;
+            padding: 12px 16px;
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--border-color);
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            font-family: inherit;
+            font-size: 0.95rem;
+            outline: none;
+            transition: var(--transition);
+        }
+
+        .form-input:focus, .form-select:focus {
+            border-color: var(--text-primary);
+        }
+
+        .btn-submit {
+            background-color: #25d366;
+            color: white;
+            width: 100%;
+            margin-top: 12px;
+            font-size: 1rem;
+        }
+
+        .btn-submit:hover {
+            background-color: #20ba5a;
+        }
+
+        /* ==========================================================================
+           6. SERVICES SECTION
+           ========================================================================= */
+        .services-section {
+            background-color: var(--bg-secondary);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        .service-card {
+            background-color: var(--bg-primary);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            padding: 32px;
+            transition: var(--transition);
+        }
+
+        .service-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--card-shadow);
+        }
+
+        .service-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: var(--radius-sm);
+            background-color: rgba(16, 185, 129, 0.1);
+            color: var(--accent-success);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-bottom: 24px;
+        }
+
+        .service-card h3 {
+            font-size: 1.25rem;
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+
+        .service-card p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        /* ==========================================================================
+           7. LEGALITY & TRUST SECTION
+           ========================================================================= */
+        .legal-section {
+            background-color: var(--bg-primary);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .legal-wrapper {
+            display: grid;
+            grid-template-columns: 0.8fr 1.2fr;
+            gap: 48px;
+            align-items: center;
+        }
+
+        .legal-badge-container {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            background-color: var(--bg-secondary);
+            padding: 32px;
+            border-radius: var(--radius-md);
+            border: 1px solid var(--border-color);
+            text-align: center;
+        }
+
+        .legal-badge-container i {
+            font-size: 3.5rem;
+            color: var(--accent-success);
+        }
+
+        .legal-badge-container h4 {
+            font-size: 1.1rem;
+            font-weight: 700;
+        }
+
+        .legal-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+        }
+
+        .legal-card {
+            border-left: 3px solid var(--accent-success);
+            padding-left: 20px;
+        }
+
+        .legal-card h4 {
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+        }
+
+        .legal-card p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        /* ==========================================================================
+           8. BRANCHES & CONTACT SECTION
+           ========================================================================= */
+        .branches-section {
+            background-color: var(--bg-secondary);
+        }
+
+        .branch-card {
+            background-color: var(--bg-primary);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            padding: 32px;
+            box-shadow: var(--card-shadow);
+        }
+
+        .branch-card h3 {
+            font-size: 1.35rem;
+            margin-bottom: 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .branch-info-item {
+            display: flex;
+            gap: 12px;
+            font-size: 1rem;
+            color: var(--text-secondary);
+            margin-bottom: 12px;
+        }
+
+        .branch-info-item i {
+            margin-top: 4px;
+            color: var(--text-muted);
+            width: 16px;
+        }
+
+        .branch-ctas {
+            display: flex;
+            gap: 16px;
+            margin-top: 24px;
+            flex-wrap: wrap;
+        }
+
+        .btn-wa {
+            background-color: #25d366;
+            color: white !important;
+            font-size: 0.95rem;
+        }
+        
+        .btn-wa:hover {
+            background-color: #20ba5a;
+        }
+
+        .map-wrapper {
+            background-color: var(--bg-primary);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            min-height: 450px;
+        }
+
+        /* ==========================================================================
+           9. FOOTER
+           ========================================================================= */
+        footer {
+            background-color: var(--bg-primary);
+            border-top: 1px solid var(--border-color);
+            padding: 40px 0;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        .footer-wrapper {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 24px;
+        }
+
+        .footer-disclaimer {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            margin-top: 24px;
+            padding-top: 24px;
+            border-top: 1px solid var(--border-color);
+            line-height: 1.5;
+        }
+
+        .back-to-top {
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* ==========================================================================
+           10. RESPONSIVE MEDIA QUERIES
+           ========================================================================= */
+        @media (max-width: 968px) {
+            .hero-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            .dashboard-grid {
+                grid-template-columns: 1fr;
+                gap: 32px;
+            }
+            .services-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .legal-wrapper {
+                grid-template-columns: 1fr;
+            }
+            .map-wrapper {
+                min-height: 350px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+            .hamburger {
+                display: flex;
+            }
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 72px;
+                left: 0;
+                width: 100%;
+                background-color: var(--bg-primary);
+                border-bottom: 1px solid var(--border-color);
+                flex-direction: column;
+                padding: 24px;
+                gap: 16px;
+                box-shadow: var(--card-shadow);
+            }
+            .nav-links.active {
+                display: flex;
+            }
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+            .legal-grid {
+                grid-template-columns: 1fr;
+            }
+            .footer-wrapper {
+                flex-direction: column;
+                text-align: center;
+            }
+            .branch-ctas .btn {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container navbar">
+            <a href="#" class="logo">
+                <img src="logo.png" alt="Logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline-block';">
+                <i class="fa-solid fa-gem" style="display:none; color:#10b981;"></i>
+                <span>Permata Valas Utama</span>
+            </a>
+            
+            <nav class="nav-links" id="navLinks">
+                <a href="#tanya-kurs" data-translate="nav_rates">Kurs Harian</a>
+                <a href="#services" data-translate="nav_services">Layanan</a>
+                <a href="#legal" data-translate="nav_legal">Legalitas</a>
+                <a href="#branches" data-translate="nav_location">Lokasi Kantor</a>
+            </nav>
+
+            <div class="nav-actions">
+                <button class="lang-btn" id="langToggle">EN</button>
+
+                <button class="theme-toggle" id="themeToggle" aria-label="Toggle Theme">
+                    <i class="fa-solid fa-moon"></i>
+                </button>
+                <a href="#branches" class="btn btn-secondary" style="padding: 8px 16px; font-size: 0.85rem;" data-translate="nav_contact">Hubungi Kami</a>
+                <button class="hamburger" id="hamburger" aria-label="Menu Mobile">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="container hero-grid">
+                <div class="hero-content">
+                    <span class="badge" data-translate="hero_badge">Berizin & Diawasi Bank Sentral</span>
+                    <h1 data-translate="hero_title">Tukar Mata Uang Aman, Cepat & Tanpa Biaya Tersembunyi</h1>
+                    <p data-translate="hero_desc">Permata Valas Utama melayani penukaran valuta asing dengan nilai terbaik. Transaksi transparan, aman, dan terpercaya untuk kebutuhan personal maupun korporat.</p>
+                    <div class="hero-ctas">
+                        <a href="#tanya-kurs" class="btn btn-primary"><span data-translate="hero_cta_primary">Tanya Kurs Hari Ini</span> <i class="fa-solid fa-arrow-down"></i></a>
+                        <a href="#branches" class="btn btn-secondary" data-translate="hero_cta_secondary">Petunjuk Arah Kantor</a>
+                    </div>
+                    <div class="hero-features">
+                        <div class="hf-item"><i class="fa-solid fa-circle-check"></i> <span data-translate="feat_1">Berizin Resmi</span></div>
+                        <div class="hf-item"><i class="fa-solid fa-circle-check"></i> <span data-translate="feat_2">Transaksi Real-time</span></div>
+                        <div class="hf-item"><i class="fa-solid fa-circle-check"></i> <span data-translate="feat_3">Tidak Ada Komisi</span></div>
+                    </div>
+                </div>
+                <div class="hero-image">
+                    <div class="board-card" style="background-color: var(--bg-primary);">
+                        <div style="display: flex; align-items:center; gap: 12px; margin-bottom: 16px;">
+                            <i class="fa-solid fa-shield-halved" style="color: var(--accent-success); font-size: 1.5rem;"></i>
+                            <div>
+                                <h4 style="font-size: 1rem; font-weight:700;" data-translate="hero_box_title">Jaminan Keamanan</h4>
+                                <p style="font-size:0.8rem; color: var(--text-secondary)" data-translate="hero_box_desc">Setiap lembar uang dijamin keasliannya melalui sistem pemindai mutakhir.</p>
+                            </div>
+                        </div>
+                        <hr style="border: none; border-top: 1px solid var(--border-color); margin: 16px 0;">
+                        <div style="font-size: 0.85rem; color: var(--text-secondary)">
+                            <p><strong data-translate="hero_box_op">Operasional Hari Ini:</strong> 09:00 - 19:00 WIB</p>
+                            <p style="margin-top: 4px;"><i class="fa-solid fa-location-dot"></i> <span data-translate="hero_box_loc">Mall ITC Permata Hijau, Lantai Dasar C18, Jakarta Selatan</span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="tanya-kurs" class="dashboard-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2 data-translate="dash_title">Informasi Kurs & Hubungi Admin</h2>
+                    <p data-translate="dash_subtitle">Dapatkan indikasi harga penukaran valuta asing terpopuler serta konsultasi langsung dengan staf kami.</p>
+                </div>
+
+                <div class="dashboard-grid">
+                    <div class="board-card">
+                        <h3 data-translate="table_title"><i class="fa-solid fa-chart-line" style="color: var(--accent-success);"></i> Indikasi Kurs Valas</h3>
+                        <div class="update-time" id="liveClock">
+                            <i class="fa-solid fa-spinner fa-spin"></i> Loading...
+                        </div>
+                        
+                        <div class="table-responsive">
+                            <table class="rates-table">
+                               <thead>
+                                   <tr>
+                                       <th data-translate="th_curr">Mata Uang</th>
+                                       <th data-translate="th_buy">Beli</th>
+                                       <th data-translate="th_sell">Jual</th>
+                                   </tr>
+                               </thead>
+                               <tbody id="ratesTableBody">
+                                   </tbody>
+                            </table>
+                        </div>
+                        
+                        <div class="table-disclaimer">
+                            <i class="fa-solid fa-circle-exclamation"></i>
+                            <p data-translate="disclaimer_text">Hanya sekedar indikasi. Kurs transaksi akan berbeda dikarenakan oleh fluktuasi pasar.</p>
+                        </div>
+                    </div>
+
+                    <div class="board-card">
+                        <h3><i class="fa-brands fa-whatsapp" style="color: #25d366;"></i> <span data-translate="form_title">Formulir Hubungi Admin</span></h3>
+                        <p class="form-subtitle" data-translate="form_subtitle">Lengkapi detail di bawah untuk mengajukan penukaran langsung ke WhatsApp.</p>
+                        
+                        <form id="waForm">
+                            <div class="form-group">
+                                <label for="clientName" data-translate="form_label_name">Nama Lengkap</label>
+                                <input type="text" id="clientName" class="form-input" placeholder="Nama Anda" required>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="txType" data-translate="form_label_type">Jenis Transaksi</label>
+                                    <select id="txType" class="form-select">
+                                        <option value="Beli Valas (IDR ke Asing)" data-translate="opt_buy">Saya Ingin Beli Valas</option>
+                                        <option value="Jual Valas (Asing ke IDR)" data-translate="opt_sell">Saya Ingin Jual Valas</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="currencyCode" data-translate="form_label_curr">Mata Uang Asing</label>
+                                    <select id="currencyCode" class="form-select">
+                                        <option value="USD">USD - US Dollar</option>
+                                        <option value="AUD">AUD - Australian Dollar</option>
+                                        <option value="CNY">CNY - Chinese Yuan</option>
+                                        <option value="EUR">EUR - Euro</option>
+                                        <option value="GBP">GBP - British Pound</option>
+                                        <option value="HKD">HKD - Hong Kong Dollar</option>
+                                        <option value="JPY">JPY - Japanese Yen</option>
+                                        <option value="MYR">MYR - Malaysian Ringgit</option>
+                                        <option value="SAR">SAR - Saudi Riyal</option>
+                                        <option value="SGD">SGD - Singapore Dollar</option>
+                                        <option value="Lainnya" data-translate="opt_other">Lainnya (Tulis di pesan)</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="txAmount" data-translate="form_label_amount">Estimasi Jumlah Nominal</label>
+                                <input type="text" id="txAmount" class="form-input" placeholder="Contoh: 1,000 USD atau Rp 15 Juta" required>
+                            </div>
+
+                            <button type="submit" class="btn btn-submit"><i class="fa-brands fa-whatsapp"></i> <span data-translate="form_btn">Kirim via WhatsApp</span></button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="services" class="services-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2 data-translate="srv_title">Layanan Keuangan Kami</h2>
+                    <p data-translate="srv_subtitle">Kami menyediakan solusi lengkap pemenuhan valuta asing terpercaya untuk kelancaran aktivitas keuangan Anda.</p>
+                </div>
+
+                <div class="services-grid">
+                    <div class="service-card">
+                        <div class="service-icon"><i class="fa-solid fa-money-bill-transfer"></i></div>
+                        <h3 data-translate="srv1_title">Cash Exchange</h3>
+                        <p data-translate="srv1_desc">Penukaran uang kertas asing (banknotes) fisik secara instan di seluruh cabang kami dengan kondisi lembar terbaik dan nominal lengkap.</p>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon"><i class="fa-solid fa-building-columns"></i></div>
+                        <h3 data-translate="srv2_title">Corporate FX</h3>
+                        <p data-translate="srv2_desc">Layanan khusus korporasi atau pelaku bisnis untuk transaksi valas skala besar dengan penawaran kurs khusus (*special rate*) kompetitif.</p>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon"><i class="fa-solid fa-earth-asia"></i></div>
+                        <h3 data-translate="srv3_title">International Remittance</h3>
+                        <p data-translate="srv3_desc">Pengiriman dana luar negeri secara aman dan cepat ke berbagai rekening bank global untuk kebutuhan bisnis maupun keluarga.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="legal" class="legal-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2 data-translate="legal_title">Keamanan & Legalitas Hukum</h2>
+                    <p data-translate="legal_subtitle">Transaksi tenang tanpa cemas. Kami beroperasi penuh di bawah payung hukum dan regulasi resmi pemerintah.</p>
+                </div>
+
+                <div class="legal-wrapper">
+                    <div class="legal-badge-container">
+                        <i class="fa-solid fa-building-shield"></i>
+                        <h4 data-translate="legal_badge_txt">KUPVA BB Berizin</h4>
+                        <p style="font-size: 0.9rem; color: var(--text-secondary);" data-translate="legal_badge_sub">Kegiatan Usaha Penukaran Valuta Asing Bukan Bank (KUPVA BB)</p>
+                    </div>
+                    <div class="legal-grid">
+                        <div class="legal-card">
+                            <h4 data-translate="l1_title">Izin Resmi Bank Indonesia</h4>
+                            <p data-translate="l1_desc">Terdaftar resmi dengan nomor lisensi: <strong>No. 24/102/KEP/DIR/2024</strong> sebagai pedagang valas berizin.</p>
+                        </div>
+                        <div class="legal-card">
+                            <h4 data-translate="l2_title">Sertifikasi Anti-Money Laundering</h4>
+                            <p data-translate="l2_desc">Patuh penuh terhadap regulasi APU-PPT (Anti Pencucian Uang & Pencegahan Pendanaan Terorisme).</p>
+                        </div>
+                        <div class="legal-card">
+                            <h4 data-translate="l3_title">Teknologi Deteksi Uang Palsu</h4>
+                            <p data-translate="l3_desc">Seluruh mesin kasir kami dilengkapi sensor ultraviolet canggih untuk menjamin 100% keaslian fisik uang.</p>
+                        </div>
+                        <div class="legal-card">
+                            <h4 data-translate="l4_title">Transparansi Nota Kontan</h4>
+                            <p data-translate="l4_desc">Setiap transaksi disertai nota fisik bertanda resmi sistem untuk menjamin akuntabilitas pembukuan Anda.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="branches" class="branches-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2 data-translate="branch_title">Kunjungi Kantor Kami</h2>
+                    <p data-translate="branch_subtitle">Silakan datang langsung ke kantor resmi kami untuk mendapatkan pelayanan penukaran valuta asing terbaik.</p>
+                </div>
+
+                <div style="max-width: 800px; margin: 0 auto; display: flex; flex-direction: column; gap: 32px;">
+                    
+                    <div class="branch-card" style="cursor: default;">
+                        <h3>
+                            <span data-translate="b_name">Kantor Pusat Permata Valas Utama</span> <span style="font-size: 0.85rem; background-color: var(--bg-tertiary); padding: 4px 12px; border-radius: 4px; font-weight: 600;" data-translate="b_tag">Utama</span>
+                        </h3>
+                        <div class="branch-info-item">
+                            <i class="fa-solid fa-location-dot" style="color: var(--accent-success); font-size: 1.2rem;"></i>
+                            <p data-translate="b_address">Mall itc permata hijau, Jl. Arteri Permata Hijau No.01 lantai dasar c18, RT.11/RW.10, Grogol Utara, Kec. Kebayoran Lama, Kota Jakarta Selatan, Daerah Khusus Ibukota Jakarta 12210 (Dekat Kopi Dari Hati)</p>
+                        </div>
+                        <div class="branch-info-item">
+                            <i class="fa-solid fa-clock"></i>
+                            <div>
+                                <p style="margin-bottom: 2px;"><strong data-translate="b_days_1">Senin - Jumat:</strong> 09.00 - 19.00 WIB</p>
+                                <p><strong data-translate="b_days_2">Sabtu - Minggu:</strong> 09.00 - 18.00 WIB</p>
+                            </div>
+                        </div>
+                        <div class="branch-info-item">
+                            <i class="fa-solid fa-phone"></i>
+                            <p>0822-4666-7301</p>
+                        </div>
+                        <div class="branch-ctas">
+                            <a href="https://wa.me/6282246667301" target="_blank" class="btn btn-wa">
+                                <i class="fa-brands fa-whatsapp"></i> <span data-translate="b_btn_wa">Chat WhatsApp Admin</span>
+                            </a>
+                            <a href="https://share.google/JfsmmD8KBexmM0NLo" target="_blank" class="btn btn-secondary">
+                                <i class="fa-solid fa-arrow-turn-up"></i> <span data-translate="b_btn_map">Petunjuk Arah (Navigasi Maps)</span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="map-wrapper">
+                        <iframe 
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.3879949826315!2d106.7820127757271!3d-6.212451360846876!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f16e682cdc2d%3A0x2fafdba877c73cb2!2sPENUKARAN%20UANG%20ASING%20%7C%7C%20PT.PERMATA%20VALAS%20UTAMA!5e0!3m2!1sid!2sid!4v1716634000000!5m2!1sid!2sid" 
+                            width="100%" 
+                            height="450" 
+                            style="border:0; display: block;" 
+                            allowfullscreen="" 
+                            loading="lazy" 
+                            referrerpolicy="no-referrer-when-downgrade">
+                        </iframe>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-wrapper">
+                <div>
+                    <p style="font-weight: 700; font-size: 1.1rem; margin-bottom: 8px;">PT Permata Valas Utama</p>
+                    <p>© 2026 Permata Valas Utama. <span data-translate="footer_copy">Hak Cipta Dilindungi Undang-Undang.</span></p>
+                </div>
+                <div>
+                    <a href="#" class="back-to-top"><span data-translate="footer_top">Kembali ke Atas</span> <i class="fa-solid fa-arrow-up"></i></a>
+                </div>
+            </div>
+            <p class="footer-disclaimer" data-translate="footer_disclaimer">
+                <strong>Disclaimer / Sanggahan:</strong> Segala bentuk penawaran nilai tukar (kurs) resmi yang sah hanya dikeluarkan langsung oleh petugas atau staf admin resmi kami saat komunikasi langsung berlangsung. Transaksi fisik sesungguhnya mengacu pada nilai final yang tercetak pada nota resmi di meja kasir saat serah terima uang disepakati secara langsung.
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // --- 1. KAMUS BAHASA (TRANSLATION DICTIONARY) ---
+        const translations = {
+            id: {
+                nav_rates: "Kurs Harian", nav_services: "Layanan", nav_legal: "Legalitas", nav_location: "Lokasi Kantor", nav_contact: "Hubungi Kami",
+                hero_badge: "Berizin & Diawasi Bank Sentral",
+                hero_title: "Tukar Mata Uang Aman, Cepat & Tanpa Biaya Tersembunyi",
+                hero_desc: "Permata Valas Utama melayani penukaran valuta asing dengan nilai terbaik. Transaksi transparan, aman, dan terpercaya untuk kebutuhan personal maupun korporat.",
+                hero_cta_primary: "Tanya Kurs Hari Ini", hero_cta_secondary: "Petunjuk Arah Kantor",
+                feat_1: "Berizin Resmi", feat_2: "Transaksi Real-time", feat_3: "Tidak Ada Komisi",
+                hero_box_title: "Jaminan Keamanan", hero_box_desc: "Setiap lembar uang dijamin keasliannya melalui sistem pemindai mutakhir.",
+                hero_box_op: "Operasional Hari Ini:", hero_box_loc: "Mall ITC Permata Hijau, Lantai Dasar C18, Jakarta Selatan",
+                dash_title: "Informasi Kurs & Hubungi Admin",
+                dash_subtitle: "Dapatkan indikasi harga penukaran valuta asing terpopuler serta konsultasi langsung dengan staf kami.",
+                table_title: "Indikasi Kurs Valas", th_curr: "Mata Uang", th_buy: "Beli", th_sell: "Jual",
+                disclaimer_text: "Hanya sekedar indikasi. Kurs transaksi akan berbeda dikarenakan oleh fluktuasi pasar.",
+                form_title: "Formulir Hubungi Admin", form_subtitle: "Lengkapi detail di bawah untuk mengajukan penukaran langsung ke WhatsApp.",
+                form_label_name: "Nama Lengkap", form_label_type: "Jenis Transaksi", form_label_curr: "Mata Uang Asing", form_label_amount: "Estimasi Jumlah Nominal",
+                opt_buy: "Saya Ingin Beli Valas", opt_sell: "Saya Ingin Jual Valas", opt_other: "Lainnya (Tulis di pesan)", form_btn: "Kirim via WhatsApp",
+                srv_title: "Layanan Keuangan Kami", srv_subtitle: "Kami menyediakan solusi lengkap pemenuhan valuta asing terpercaya untuk kelancaran aktivitas keuangan Anda.",
+                srv1_title: "Cash Exchange", srv1_desc: "Penukaran uang kertas asing (banknotes) fisik secara instan di seluruh cabang kami dengan kondisi lembar terbaik dan nominal lengkap.",
+                srv2_title: "Corporate FX", srv2_desc: "Layanan khusus korporasi atau pelaku bisnis untuk transaksi valas skala besar dengan penawaran kurs khusus (*special rate*) kompetitif.",
+                srv3_title: "International Remittance", srv3_desc: "Pengiriman dana luar negeri secara aman dan cepat ke berbagai rekening bank global untuk kebutuhan bisnis maupun keluarga.",
+                legal_title: "Keamanan & Legalitas Hukum", legal_subtitle: "Transaksi tenang tanpa cemas. Kami beroperasi penuh di bawah payung hukum dan regulasi resmi pemerintah.",
+                legal_badge_txt: "KUPVA BB Berizin", legal_badge_sub: "Kegiatan Usaha Penukaran Valuta Asing Bukan Bank (KUPVA BB)",
+                l1_title: "Izin Resmi Bank Indonesia", l1_desc: "Terdaftar resmi dengan nomor lisensi: No. 24/102/KEP/DIR/2024 sebagai pedagang valas berizin.",
+                l2_title: "Sertifikasi Anti-Money Laundering", l2_desc: "Patuh penuh terhadap regulasi APU-PPT (Anti Pencucian Uang & Pencegahan Pendanaan Terorisme).",
+                l3_title: "Teknologi Deteksi Uang Palsu", l3_desc: "Seluruh mesin kasir kami dilengkapi sensor ultraviolet canggih untuk menjamin 100% keaslian fisik uang.",
+                l4_title: "Transparansi Nota Kontan", l4_desc: "Setiap transaksi disertai nota fisik bertanda resmi sistem untuk menjamin akuntabilitas pembukuan Anda.",
+                branch_title: "Kunjungi Kantor Kami", branch_subtitle: "Silakan datang langsung ke kantor resmi kami untuk mendapatkan pelayanan penukaran valuta asing terbaik.",
+                b_name: "Kantor Pusat Permata Valas Utama", b_tag: "Utama",
+                b_address: "Mall itc permata hijau, Jl. Arteri Permata Hijau No.01 lantai dasar c18, RT.11/RW.10, Grogol Utara, Kec. Kebayoran Lama, Kota Jakarta Selatan, Daerah Khusus Ibukota Jakarta 12210 (Dekat Kopi Dari Hati)",
+                b_days_1: "Senin - Jumat:", b_days_2: "Sabtu - Minggu:", b_btn_wa: "Chat WhatsApp Admin", b_btn_map: "Petunjuk Arah (Navigasi Maps)",
+                footer_copy: "Hak Cipta Dilindungi Undang-Undang.", footer_top: "Kembali ke Atas",
+                footer_disclaimer: "<strong>Disclaimer / Sanggahan:</strong> Segala bentuk penawaran nilai tukar (kurs) resmi yang sah hanya dikeluarkan langsung oleh petugas atau staf admin resmi kami saat komunikasi langsung berlangsung. Transaksi fisik sesungguhnya mengacu pada nilai final yang tercetak pada nota resmi di meja kasir saat serah terima uang disepakati secara langsung.",
+                loading_text: "Menghubungkan ke server finansial...",
+                date_prefix: "Terakhir Diperbarui:"
+            },
+            en: {
+                nav_rates: "Live Rates", nav_services: "Services", nav_legal: "Legality", nav_location: "Our Location", nav_contact: "Contact Us",
+                hero_badge: "Licensed & Supervised by Central Bank",
+                hero_title: "Exchange Currency Safely, Fast & Without Hidden Fees",
+                hero_desc: "Permata Valas Utama provides foreign currency exchange services with the best rates. Secure, transparent, and trusted transactions for personal and corporate needs.",
+                hero_cta_primary: "Check Today's Rates", hero_cta_secondary: "Get Office Directions",
+                feat_1: "Officially Licensed", feat_2: "Real-time Transactions", feat_3: "Zero Commission",
+                hero_box_title: "Security Assurance", hero_box_desc: "Authenticity of every single banknote is guaranteed through our cutting-edge scanning system.",
+                hero_box_op: "Today's Business Hours:", hero_box_loc: "Mall ITC Permata Hijau, Ground Floor C18, South Jakarta",
+                dash_title: "Currency Exchange Rates & Inquiry Desk",
+                dash_subtitle: "Find indicative market exchange rates for popular currencies and consult directly with our staff.",
+                table_title: "Indicative Forex Rates", th_curr: "Currency", th_buy: "We Buy", th_sell: "We Sell",
+                disclaimer_text: "For indication purposes only. Actual transaction rates will vary based on market fluctuations.",
+                form_title: "Contact Our Admin Desk", form_subtitle: "Fill in the details below to submit your exchange order straight to WhatsApp.",
+                form_label_name: "Full Name", form_label_type: "Transaction Type", form_label_curr: "Foreign Currency", form_label_amount: "Estimated Amount",
+                opt_buy: "I Want to Buy Foreign Currency", opt_sell: "I Want to Sell Foreign Currency", opt_other: "Others (Specify in chat)", form_btn: "Send via WhatsApp",
+                srv_title: "Our Premium Financial Services", srv_subtitle: "We provide comprehensive foreign exchange solutions to ensure the smoothness of your financial activities.",
+                srv1_title: "Cash Exchange", srv1_desc: "Instant physical exchange of foreign banknotes at our office with premier bill conditions and complete denominations.",
+                srv2_title: "Corporate FX", srv2_desc: "Specialized services for corporations or businesses needing high-volume currency trade with preferential special rates.",
+                srv3_title: "International Remittance", srv3_desc: "Secure and swift global wire transfers directly to international bank accounts for business or family needs.",
+                legal_title: "Security & Legal Compliance", legal_subtitle: "Transact with total peace of mind. We operate fully under official state financial regulations.",
+                legal_badge_txt: "Licensed Non-Bank FX", legal_badge_sub: "Authorized Foreign Exchange Operator (KUPVA BB) by Central Bank",
+                l1_title: "Bank Indonesia Official License", l1_desc: "Officially registered and monitored under Central Bank authorization number: No. 24/102/KEP/DIR/2024.",
+                l2_title: "Anti-Money Laundering Certification", l2_desc: "Fully compliant with global AML/CFT standards and financial transaction reporting requirements.",
+                l3_title: "Counterfeit Detection Technology", l3_desc: "Every teller desk is equipped with advanced ultraviolet hardware to ensure 100% genuine currency cash flow.",
+                l4_title: "Transparent Receipt Audit", l4_desc: "Every transaction comes with a system-generated official paper invoice to back up your corporate accounting sheets.",
+                branch_title: "Visit Our Main Branch", branch_subtitle: "Please come directly to our licensed main office to get premier exchange counter services.",
+                b_name: "Permata Valas Utama Head Office", b_tag: "Main",
+                b_address: "Mall itc permata hijau, Jl. Arteri Permata Hijau No.01 Ground Floor c18, Grogol Utara, Kebayoran Lama, South Jakarta, 12210 (Near Kopi Dari Hati)",
+                b_days_1: "Monday - Friday:", b_days_2: "Saturday - Sunday:", b_btn_wa: "Chat WhatsApp Representative", b_btn_map: "Get Location Directions",
+                footer_copy: "All Rights Reserved.", footer_top: "Back to Top",
+                footer_disclaimer: "<strong>Disclaimer:</strong> All forms of exchange rate quotes on this website are market indications only and are subject to change without prior notice. Final physical cash settlement will strictly follow the final system rates generated on the official transaction receipt at the teller desk.",
+                loading_text: "Connecting to financial servers...",
+                date_prefix: "Last Updated:"
+            }
+        };
+
+        let currentLanguage = localStorage.getItem("language") || "id";
+
+        function applyLanguage() {
+            // Ubah semua elemen HTML yang memiliki atribut data-translate
+            document.querySelectorAll("[data-translate]").forEach(elem => {
+                const key = elem.getAttribute("data-translate");
+                if (translations[currentLanguage][key]) {
+                    elem.innerHTML = translations[currentLanguage][key];
+                }
+            });
+
+            // Ubah teks tombol pengubah bahasa
+            document.getElementById("langToggle").textContent = currentLanguage === "id" ? "EN" : "ID";
+            
+            // Render ulang tabel kurs agar format tanggal ikut terjemahan terbaru
+            fetchLiveRates();
+        }
+
+        // Event handler klik ubah bahasa
+        document.getElementById("langToggle").addEventListener("click", () => {
+            currentLanguage = currentLanguage === "id" ? "en" : "id";
+            localStorage.setItem("language", currentLanguage);
+            applyLanguage();
+        });
+
+
+        // --- 2. FOREX RATES DATA & API PROCESSING ---
+        const CONFIG_MARGINS = {
+            "USD": 150, "AUD": 100, "CNY": 30, "EUR": 180, "GBP": 220, "HKD": 15, "JPY": 80, "MYR": 40, "SAR": 45, "SGD": 100
+        };
+
+        const targetCurrencies = [
+            { code: "USD", name: "US Dollar", flag: "https://flagcdn.com/w40/us.png" },
+            { code: "AUD", name: "Australian Dollar", flag: "https://flagcdn.com/w40/au.png" },
+            { code: "CNY", name: "Chinese Yuan", flag: "https://flagcdn.com/w40/cn.png" },
+            { code: "EUR", name: "Euro", flag: "https://flagcdn.com/w40/eu.png" },
+            { code: "GBP", name: "British Pound", flag: "https://flagcdn.com/w40/gb.png" },
+            { code: "HKD", name: "Hong Kong Dollar", flag: "https://flagcdn.com/w40/hk.png" },
+            { code: "JPY", name: "Japanese Yen (100)", flag: "https://flagcdn.com/w40/jp.png" },
+            { code: "MYR", name: "Malaysian Ringgit", flag: "https://flagcdn.com/w40/my.png" },
+            { code: "SAR", name: "Saudi Riyal", flag: "https://flagcdn.com/w40/sa.png" },
+            { code: "SGD", name: "Singapore Dollar", flag: "https://flagcdn.com/w40/sg.png" }
+        ];
+
+        async function fetchLiveRates() {
+            const tableBody = document.getElementById("ratesTableBody");
+            const clockElement = document.getElementById("liveClock");
+
+            // Set placeholder teks memuat bahasa terkait
+            clockElement.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> ${translations[currentLanguage]['loading_text']}`;
+
+            try {
+                const response = await fetch("https://open.er-api.com/v6/latest/USD");
+                if (!response.ok) throw new Error();
+                
+                const data = await response.json();
+                const usdToIdrRate = data.rates["IDR"];
+
+                tableBody.innerHTML = "";
+
+                targetCurrencies.forEach(currency => {
+                    let finalBuyPrice = 0;
+                    let finalSellPrice = 0;
+                    const marginValue = CONFIG_MARGINS[currency.code] || 0;
+
+                    if (currency.code === "USD") {
+                        finalBuyPrice = Math.round(usdToIdrRate - marginValue);
+                        finalSellPrice = Math.round(usdToIdrRate + marginValue);
+                    } else {
+                        const rawTargetRate = data.rates[currency.code];
+                        let baseRateInIdr = usdToIdrRate / rawTargetRate;
+
+                        if (currency.code === "JPY") {
+                            baseRateInIdr = baseRateInIdr * 100;
+                        }
+
+                        finalBuyPrice = Math.round(baseRateInIdr - marginValue);
+                        finalSellPrice = Math.round(baseRateInIdr + marginValue);
+                    }
+
+                    const row = document.createElement("tr");
+                    row.innerHTML = `
+                        <td class="currency-td">
+                            <img src="${currency.flag}" class="currency-flag" alt="${currency.code}">
+                            <div>
+                                <span>${currency.code}</span>
+                                <div class="currency-name">${currency.name}</div>
+                            </div>
+                        </td>
+                        <td class="rate-val">Rp ${finalBuyPrice.toLocaleString('id-ID')}</td>
+                        <td class="rate-val">Rp ${finalSellPrice.toLocaleString('id-ID')}</td>
+                    `;
+                    tableBody.appendChild(row);
+                });
+
+                // Update teks waktu tanpa embel-embel "Update Otomatis API:"
+                const apiTime = new Date(data.time_last_update_utc);
+                const localeCode = currentLanguage === "id" ? "id-ID" : "en-US";
+                const options = { year: "numeric", month: "long", day: "numeric", weekday: "long", timeZone: "Asia/Jakarta" };
+                
+                clockElement.innerHTML = `<i class="fa-regular fa-calendar-check"></i> ${translations[currentLanguage]['date_prefix']} ${apiTime.toLocaleDateString(localeCode, options)} (WIB)`;
+
+            } catch (error) {
+                clockElement.innerHTML = `<i class="fa-solid fa-triangle-exclamation" style="color:#ef4444;"></i> Error loading rates.`;
+            }
+        }
+
+        // --- 3. WHATSAPP FORM DESK ---
+        const WHATSAPP_NUMBER = "6282246667301"; 
+
+        document.getElementById("waForm").addEventListener("submit", function(e) {
+            e.preventDefault();
+            
+            const name = document.getElementById("clientName").value;
+            const type = document.getElementById("txType").value;
+            const currency = document.getElementById("currencyCode").value;
+            const amount = document.getElementById("txAmount").value;
+
+            // Template pesan WA disesuaikan mengikuti bahasa aktif demi kenyamanan nasabah
+            let textMessage = "";
+            if (currentLanguage === "id") {
+                textMessage = `Halo Admin Permata Valas Utama,%0A%0ASaya ingin menanyakan informasi kurs terbaru dengan detail berikut:%0A%0A• *Nama* : ${name}%0A• *Jenis Transaksi* : ${type}%0A• *Mata Uang* : ${currency}%0A• *Estimasi Nominal* : ${amount}%0A%0AMohon info ketersediaan stok fisik dan harga kurs terbaiknya hari ini. Terima kasih!`;
+            } else {
+                textMessage = `Hello Admin Permata Valas Utama,%0A%0AI would like to inquire about the latest exchange rates for:%0A%0A• *Name* : ${name}%0A• *Transaction* : ${type}%0A• *Currency* : ${currency}%0A• *Estimated Amount* : ${amount}%0A%0APlease provide availability and best rate quote for today. Thank you!`;
+            }
+            
+            window.open(`https://api.whatsapp.com/send?phone=${WHATSAPP_NUMBER}&text=${textMessage}`, '_blank');
+        });
+
+        // --- 4. DARK / LIGHT MODE TOGGLE ---
+        const themeToggle = document.getElementById("themeToggle");
+        const currentTheme = localStorage.getItem("theme") || "light";
+
+        document.documentElement.setAttribute("data-theme", currentTheme);
+        updateThemeIcon(currentTheme);
+
+        themeToggle.addEventListener("click", () => {
+            let theme = document.documentElement.getAttribute("data-theme");
+            let newTheme = theme === "dark" ? "light" : "dark";
+            document.documentElement.setAttribute("data-theme", newTheme);
+            localStorage.setItem("theme", newTheme);
+            updateThemeIcon(newTheme);
+        });
+
+        function updateThemeIcon(theme) {
+            const icon = themeToggle.querySelector("i");
+            icon.className = theme === "dark" ? "fa-solid fa-sun" : "fa-solid fa-moon";
+        }
+
+        // --- 5. MOBILE MENU NAV ---
+        const hamburger = document.getElementById("hamburger");
+        const navLinks = document.getElementById("navLinks");
+
+        hamburger.addEventListener("click", () => {
+            navLinks.classList.toggle("active");
+        });
+
+        document.querySelectorAll(".nav-links a").forEach(link => {
+            link.addEventListener("click", () => {
+                navLinks.classList.remove("active");
+            });
+        });
+
+        // Eksekusi fungsi inisialisasi saat web pertama kali terbuka
+        window.addEventListener("DOMContentLoaded", () => {
+            applyLanguage();
+        });
+    </script>
+</body>
+</html>
